@@ -1,4 +1,4 @@
-const RouteContants = (() => {
+const RouteConstants = (() => {
   enum PATH {
     MAIN_ROUTE = 'MAIN_ROUTE',
     DASHBOARD = 'DASHBOARD',
@@ -37,4 +37,4 @@ const RouteContants = (() => {
   };
 })();
 
-export default RouteContants;
+export default RouteConstants;

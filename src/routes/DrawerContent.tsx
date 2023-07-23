@@ -1,14 +1,14 @@
 import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import RouteContants from './constants';
+import RouteConstants from './constants';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import {useNavigation} from '@react-navigation/native';
 import {Text, useTheme} from 'react-native-paper';
 import {useTypedSelector} from '../hooks';
 import {shallowEqual} from 'react-redux';
 
-const {DRAWER_ITEMS} = RouteContants;
+const {DRAWER_ITEMS} = RouteConstants;
 
 const DrawerContent = props => {
   const theme = useTheme();

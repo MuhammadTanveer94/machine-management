@@ -1,18 +1,21 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {useTheme} from 'react-native-paper';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-
-import RouteConstants from './constants';
-import DrawerContent from './DrawerContent';
+import {MD3Colors, useTheme} from 'react-native-paper';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-const {Navigator, Screen} = createDrawerNavigator();
+import RouteConstants from './constants';
+
+const {Navigator, Screen} = createNativeStackNavigator();
 
 const {PATH} = RouteConstants;
 
-const DrawerRoutes = () => {
+type RouteParams = {
+  name?: string;
+};
+
+const MainAppStack = () => {
   const {dispatch} = useNavigation();
   const theme = useTheme();
 
@@ -22,20 +25,18 @@ const DrawerRoutes = () => {
       size={30}
       color={theme.colors.primary}
       onPress={() => dispatch(DrawerActions.openDrawer())}
-      style={styles.icon}
     />
   );
   return (
     <Navigator
       screenOptions={{
         headerShown: false,
-        drawerType: 'slide',
-        drawerPosition: 'left',
-        lazy: true,
+        animation: 'slide_from_right',
+        contentStyle: {
+          backgroundColor: MD3Colors.neutral95,
+        },
       }}
-      backBehavior="history"
-      drawerContent={props => <DrawerContent {...props} />}
-      initialRouteName={PATH.DASHBOARD}>
+      initialRouteName={PATH.MANAGE_CATEGORIES}>
       <Screen
         name={PATH.DASHBOARD}
         options={{
@@ -45,6 +46,17 @@ const DrawerRoutes = () => {
           headerLeft: DrawerIcon,
         }}
         getComponent={() => require('../screens/Dashboard').default}
+      />
+
+      <Screen
+        name={PATH.CATEGORY}
+        options={({route: {params: {name = 'Category'} = {}} = {}}) => ({
+          headerShown: true,
+          headerTitleAlign: 'center',
+          headerTitle: name,
+          headerLeft: DrawerIcon,
+        })}
+        getComponent={() => require('../screens/Category').default}
       />
       <Screen
         name={PATH.MANAGE_CATEGORIES}
@@ -56,25 +68,10 @@ const DrawerRoutes = () => {
         }}
         getComponent={() => require('../screens/ManageCategories').default}
       />
-      <Screen
-        name={PATH.CATEGORY}
-        options={({route: {params: {name = 'Category'} = {}} = {}}) => ({
-          headerShown: true,
-          headerTitleAlign: 'center',
-          headerTitle: name,
-          headerLeft: DrawerIcon,
-        })}
-        getId={({params}) => params?.id}
-        getComponent={() => require('../screens/Category').default}
-      />
     </Navigator>
   );
 };
 
-export default DrawerRoutes;
+export default MainAppStack;
 
-const styles = StyleSheet.create({
-  icon: {
-    marginLeft: 10,
-  },
-});
+const styles = StyleSheet.create({});

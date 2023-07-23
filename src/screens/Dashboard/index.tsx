@@ -3,7 +3,7 @@ import {MD3Colors, Text} from 'react-native-paper';
 import {StyleSheet, View, ScrollView, SectionList} from 'react-native';
 
 import {useTypedSelector} from '../../hooks';
-import RouteContants from '../../routes/constants';
+import RouteConstants from '../../routes/constants';
 import Button from './../../components/Button/Button';
 import {useNavigation} from '@react-navigation/native';
 import ManageCategoryCard from '../../components/Cards/ManageCategoryCard';
@@ -12,7 +12,7 @@ import {categoryData} from '../../types';
 import CategoryHeader from '../../components/CategoryHeader';
 import CategoryDataCard from '../../components/Cards/CategoryDataCard';
 
-const {PATH} = RouteContants;
+const {PATH} = RouteConstants;
 
 const Dashboard = () => {
   const {navigate} = useNavigation();
