@@ -17,7 +17,7 @@ const DatePicker = ({value, onValueChange, label = ''}) => {
   const onConfirmSingle = useCallback(
     params => {
       setOpen(false);
-      onValueChange(params.date);
+      onValueChange(params.date.toString());
     },
     [setOpen],
   );
@@ -30,7 +30,7 @@ const DatePicker = ({value, onValueChange, label = ''}) => {
           mode="single"
           visible={open}
           onDismiss={onDismissSingle}
-          date={value}
+          date={new Date(value)}
           onConfirm={onConfirmSingle}
         />
       </>

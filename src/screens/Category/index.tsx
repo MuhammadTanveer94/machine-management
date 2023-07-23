@@ -4,11 +4,11 @@ import CategoryDataCard from '../../components/Cards/CategoryDataCard';
 import {useTypedSelector} from '../../hooks';
 
 import {shallowEqual} from 'react-redux';
-import {CategoryStateV2, categoryData} from '../../types';
+import {CategoryState, categoryData} from '../../types';
 import CategoryHeader from '../../components/CategoryHeader';
 
 const Category = ({route}) => {
-  const {id, name} = (route?.params as CategoryStateV2) ?? {};
+  const {id, name} = (route?.params as CategoryState) ?? {};
   const categoryList = useTypedSelector(({categoryData}) => {
     return Object.values(
       categoryData[id as string]?.categoryData ?? {},

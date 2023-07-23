@@ -1,8 +1,8 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
-import {CategoriesV2, CategoryStateV2} from '../../types';
+import {Categories, CategoryState} from '../../types';
 
-const initialState: CategoriesV2 = {};
+const initialState: Categories = {};
 
 const categories = createSlice({
   name: 'categories',
@@ -24,8 +24,8 @@ const categories = createSlice({
       state,
       action: PayloadAction<{
         categoryId: string;
-        type: keyof CategoryStateV2;
-        value: CategoryStateV2[keyof CategoryStateV2];
+        type: keyof CategoryState;
+        value: CategoryState[keyof CategoryState];
       }>,
     ) => {
       const {categoryId, type, value} = action.payload;

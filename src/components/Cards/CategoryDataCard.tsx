@@ -13,6 +13,9 @@ import Button from '../Button/Button';
 import {useTypedSelector} from '../../hooks';
 import DatePicker from '../DatePicker/DatePicker';
 import {AttributeEnum, attributeCategory, categoryData} from '../../types';
+import dateTimeService from '../../utils/dataTime.service';
+
+const {timeFormat, isInvalidDate} = dateTimeService;
 
 const CategoryDataCard: React.FC<categoryData & {index: number}> = ({
   id,
@@ -60,7 +63,13 @@ const CategoryDataCard: React.FC<categoryData & {index: number}> = ({
   return (
     <Card elevation={0} style={styles.cardContainer}>
       <Card.Title
-        title={title || `Unnamed category Title ${index + 1}`}
+        title={
+          title
+            ? isInvalidDate(title)
+              ? title
+              : timeFormat(title)
+            : `Unnamed category Title ${index + 1}`
+        }
         titleVariant="titleLarge"
         titleStyle={styles.textStyle}
       />
