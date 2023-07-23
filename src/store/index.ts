@@ -34,7 +34,7 @@ export const reduxStorage: Storage = {
 const persistConfig = {
   key: 'root',
   storage: reduxStorage,
-  whitelist: ['category'],
+  whitelist: ['categories', 'categoryAttributes', 'categoryData'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
